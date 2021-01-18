@@ -1,7 +1,6 @@
 //  main.c
 //  MemoryMonitor
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,10 +12,10 @@
 #define PROCESS_BUFFER_MAX 1024
 
 struct Process {
-    pid_t pid;
-    struct proc_taskinfo t_info;
-    uint64_t real_mem_usage;
-    char name[PROCESS_NAME_MAX];
+    struct proc_taskinfo    t_info;
+    uint64_t                real_mem_usage;
+    pid_t                   pid;
+    char                    name[PROCESS_NAME_MAX];
 };
 
 void get_process_info(struct Process *process);
@@ -25,9 +24,6 @@ void print_process_info(struct Process *process);
 int main(void)
 {
     uint32_t pid_buffer[PROCESS_BUFFER_MAX] = {0};
-    
-    // I don't know what sig (signature?) is, but it's needed...
-    // uint32_t sig = 100;
     
     for (;;) {
         // setting process count to 1 from the beginning since
